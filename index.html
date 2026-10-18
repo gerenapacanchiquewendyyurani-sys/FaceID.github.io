@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Proyecto educativo de demostración sobre reconocimiento facial y Tailwind CSS.">
+  <title>FaceID | Reconocimiento facial</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        colors: { navy: '#0b1534', brand: '#2457d6', cyan: '#55d6e8', pale: '#eff5ff' },
+        boxShadow: { soft: '0 20px 60px rgba(22, 45, 100, .12)' }
+      }}
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .hero-glow { background: radial-gradient(circle at 80% 30%, rgba(85,214,232,.22), transparent 30%), linear-gradient(135deg,#f4f8ff 0%,#fff 55%,#eaf8ff 100%); }
+  </style>
+</head>
+<body class="bg-white text-slate-800 antialiased">
+  <header class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/95 backdrop-blur">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4">
+      <a href="#inicio" class="flex items-center gap-3" aria-label="FaceID, ir al inicio">
+        <img src="img/logo-faceid.svg" alt="" class="h-10 w-10">
+        <span class="text-xl font-extrabold tracking-tight text-navy">Face<span class="text-brand">ID</span></span>
+      </a>
+      <nav class="hidden items-center gap-8 text-sm font-semibold text-slate-600 md:flex" aria-label="Navegación principal">
+        <a class="hover:text-brand" href="#como-funciona">Cómo funciona</a>
+        <a class="hover:text-brand" href="#beneficios">Beneficios</a>
+        <a class="hover:text-brand" href="#privacidad">Privacidad</a>
+      </nav>
+      <a href="#como-funciona" class="hidden rounded-full bg-brand px-5 py-2.5 text-sm font-bold text-white shadow-md transition hover:bg-blue-500 md:inline-flex">Conocer más</a>
+      <button id="menuBtn" class="rounded-lg border border-slate-200 p-2 md:hidden" aria-expanded="false" aria-controls="mobileMenu" aria-label="Abrir menú">
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <nav id="mobileMenu" class="hidden border-t border-slate-100 px-5 py-4 md:hidden" aria-label="Navegación móvil">
+      <div class="flex flex-col gap-4 font-semibold"><a href="#como-funciona">Cómo funciona</a><a href="#beneficios">Beneficios</a><a href="#privacidad">Privacidad</a></div>
+    </nav>
+  </header>
+
+  <main>
+    <section id="inicio" class="hero-glow overflow-hidden">
+      <div class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-5 py-14 sm:py-20 md:grid-cols-2 md:gap-14">
+        <div>
+          <span class="mb-5 inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white px-4 py-2 text-sm font-bold text-brand shadow-sm"><span class="h-2 w-2 rounded-full bg-cyan"></span> Tecnología explicada de forma sencilla</span>
+          <h1 class="max-w-xl text-4xl font-black leading-tight tracking-tight text-navy sm:text-5xl lg:text-6xl">Reconocimiento facial: <span class="text-brand">tecnología que identifica patrones</span></h1>
+          <p class="mt-6 max-w-xl text-lg leading-8 text-slate-600">Conoce cómo los sistemas pueden analizar características del rostro para apoyar procesos de verificación de identidad, siempre considerando la seguridad y la privacidad.</p>
+          <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+            <a href="#como-funciona" class="inline-flex items-center justify-center rounded-xl bg-brand px-6 py-3.5 font-bold text-white shadow-lg transition hover:bg-blue-500">Descubrir cómo funciona <span class="ml-2" aria-hidden="true">→</span></a>
+            <a href="#privacidad" class="inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-6 py-3.5 font-bold text-navy transition hover:border-brand hover:text-brand">Uso responsable</a>
+          </div>
+          <p class="mt-5 text-xs leading-5 text-slate-500">Proyecto demostrativo con fines educativos. Esta página no utiliza la cámara ni identifica personas.</p>
+        </div>
+        <div class="relative">
+          <div class="absolute -inset-4 rounded-[2rem] bg-cyan/20 blur-2xl"></div>
+          <div class="relative rounded-[2rem] border border-white bg-white p-3 shadow-soft">
+            <img src="img/rostro-reconocimiento.jpg" alt="Ilustración de un rostro dentro de una interfaz tecnológica de reconocimiento" class="h-72 w-full rounded-3xl object-cover sm:h-96">
+            <div class="absolute bottom-7 left-7 right-7 rounded-2xl border border-white/60 bg-white/90 p-4 shadow-lg backdrop-blur">
+              <div class="flex items-center gap-3">
+                <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50"><img src="img/icon-huella.svg" alt="" class="h-6 w-6"></div>
+                <div><p class="font-extrabold text-navy">Verificación biométrica</p><p class="text-sm text-slate-500">Un ejemplo de autenticación digital</p></div>
+                <span class="ml-auto rounded-full bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-700">Concepto</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="como-funciona" class="px-5 py-16 sm:py-20">
+      <div class="mx-auto max-w-7xl">
+        <div class="mx-auto max-w-2xl text-center">
+          <p class="text-sm font-extrabold uppercase tracking-[.18em] text-brand">Proceso general</p>
+          <h2 class="mt-3 text-3xl font-black tracking-tight text-navy sm:text-4xl">¿Cómo funciona?</h2>
+          <p class="mt-4 leading-7 text-slate-600">De manera simplificada, un sistema de reconocimiento facial suele seguir estos pasos.</p>
+        </div>
+        <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
+          <article class="rounded-2xl border border-slate-100 bg-white p-7 shadow-md transition hover:-translate-y-1 hover:shadow-xl">
+            <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50"><img src="img/icon-rapidez.svg" alt="" class="h-8 w-8"></div>
+            <p class="mt-6 text-sm font-bold text-brand">PASO 01</p><h3 class="mt-2 text-xl font-extrabold text-navy">Captura de imagen</h3>
+            <p class="mt-3 leading-7 text-slate-600">El sistema recibe una imagen autorizada en la que aparece un rostro. La calidad de la imagen puede afectar el resultado.</p>
+          </article>
+          <article class="rounded-2xl border border-slate-100 bg-white p-7 shadow-md transition hover:-translate-y-1 hover:shadow-xl">
+            <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-cyan-50"><img src="img/icon-huella.svg" alt="" class="h-8 w-8"></div>
+            <p class="mt-6 text-sm font-bold text-brand">PASO 02</p><h3 class="mt-2 text-xl font-extrabold text-navy">Análisis de patrones</h3>
+            <p class="mt-3 leading-7 text-slate-600">Un algoritmo procesa rasgos y genera una representación matemática que permite realizar comparaciones.</p>
+          </article>
+          <article class="rounded-2xl border border-slate-100 bg-white p-7 shadow-md transition hover:-translate-y-1 hover:shadow-xl">
+            <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-50"><img src="img/icon-seguridad.svg" alt="" class="h-8 w-8"></div>
+            <p class="mt-6 text-sm font-bold text-brand">PASO 03</p><h3 class="mt-2 text-xl font-extrabold text-navy">Comparación y decisión</h3>
+            <p class="mt-3 leading-7 text-slate-600">El sistema compara los datos con una referencia y entrega una coincidencia probable, que puede requerir revisión adicional.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="beneficios" class="bg-pale px-5 py-16 sm:py-20">
+      <div class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-16">
+        <div>
+          <p class="text-sm font-extrabold uppercase tracking-[.18em] text-brand">Aplicaciones</p>
+          <h2 class="mt-3 text-3xl font-black tracking-tight text-navy sm:text-4xl">¿Dónde se puede utilizar?</h2>
+          <p class="mt-4 leading-7 text-slate-600">Puede formar parte de herramientas de verificación, pero no es infalible y debe implementarse con controles adecuados.</p>
+          <ul class="mt-7 space-y-4">
+            <li class="flex gap-3"><span class="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand text-sm font-bold text-white">✓</span><span><strong class="text-navy">Acceso a dispositivos:</strong> ayuda a verificar al usuario en algunos teléfonos y computadores.</span></li>
+            <li class="flex gap-3"><span class="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand text-sm font-bold text-white">✓</span><span><strong class="text-navy">Control de acceso:</strong> puede apoyar el ingreso a espacios o servicios autorizados.</span></li>
+            <li class="flex gap-3"><span class="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand text-sm font-bold text-white">✓</span><span><strong class="text-navy">Prevención de fraude:</strong> puede complementar otros mecanismos de verificación.</span></li>
+          </ul>
+        </div>
+        <div class="rounded-3xl bg-white p-6 shadow-soft sm:p-8">
+          <div class="flex items-center gap-4"><div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50"><img src="img/icon-seguridad.svg" alt="" class="h-8 w-8"></div><div><h3 class="text-xl font-extrabold text-navy">La tecnología necesita criterio</h3><p class="text-sm text-slate-500">Beneficios y límites</p></div></div>
+          <div class="mt-6 space-y-4">
+            <div class="rounded-xl bg-emerald-50 p-4"><p class="font-bold text-emerald-800">Posible beneficio</p><p class="mt-1 text-sm leading-6 text-emerald-900">Agilizar ciertos procesos de autenticación cuando se configura correctamente.</p></div>
+            <div class="rounded-xl bg-amber-50 p-4"><p class="font-bold text-amber-800">Aspecto para considerar</p><p class="mt-1 text-sm leading-6 text-amber-900">La iluminación, la calidad de los datos y los sesgos pueden afectar la precisión.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="privacidad" class="px-5 py-16 sm:py-20">
+      <div class="mx-auto max-w-5xl rounded-3xl bg-navy px-6 py-10 text-white sm:px-12 sm:py-14">
+        <div class="grid grid-cols-1 items-center gap-8 md:grid-cols-[1fr_auto]">
+          <div><p class="text-sm font-extrabold uppercase tracking-[.18em] text-cyan">Privacidad y responsabilidad</p><h2 class="mt-3 text-3xl font-black sm:text-4xl">Los datos biométricos requieren cuidado.</h2><p class="mt-4 max-w-2xl leading-7 text-slate-300">Es importante informar a las personas, obtener la autorización que corresponda, proteger los datos, limitar su uso y ofrecer alternativas cuando sea posible.</p></div>
+          <div class="mx-auto flex h-24 w-24 items-center justify-center rounded-3xl bg-white/10"><img src="img/icon-seguridad.svg" alt="" class="h-14 w-14"></div>
+        </div>
+        <div class="mt-8 border-t border-white/15 pt-5 text-sm leading-6 text-slate-300">Aviso: esta web es una maqueta académica. No activa la cámara, no almacena fotografías y no realiza reconocimiento facial real.</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-slate-950 px-5 py-8 text-slate-300">
+    <div class="mx-auto flex max-w-7xl flex-col gap-4 text-sm md:flex-row md:items-center md:justify-between">
+      <div class="flex items-center gap-3"><img src="img/logo-faceid.svg" alt="" class="h-8 w-8"><span class="font-bold text-white">FaceID · Proyecto educativo</span></div>
+      <p>Desarrollado como práctica de diseño web con Tailwind CSS.</p>
+      <a href="#inicio" class="font-semibold transition hover:text-cyan">Volver arriba ↑</a>
+    </div>
+  </footer>
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn.addEventListener('click', () => {
+      const isOpen = !mobileMenu.classList.contains('hidden');
+      mobileMenu.classList.toggle('hidden');
+      menuBtn.setAttribute('aria-expanded', String(!isOpen));
+      menuBtn.setAttribute('aria-label', isOpen ? 'Abrir menú' : 'Cerrar menú');
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.setAttribute('aria-label', 'Abrir menú');
+    }));
+  </script>
+</body>
+</html>
